@@ -4,11 +4,15 @@
 
 # You may need to import some classes of the controller module. Ex:
 #  from controller import Robot, Motor, DistanceSensor
+from gettext import find
 from controller import Robot
 from controller import TouchSensor
 from controller import DistanceSensor
 from json.encoder import INFINITY
 from fightingFunctions import *
+from basicFunctions import *
+
+
 
 # create the Robot instance.
 robot = Robot()
@@ -36,17 +40,20 @@ rightSpeed = 0.0
 wheels[0].setPosition(INFINITY)
 wheels[1].setPosition(INFINITY)
 
+lineFlag = False
+
 while robot.step(timestep) != -1:
 
-    leftSpeed = 5.0
-    rightSpeed = 5.0
-    # if(groundSensor.getValue() < 5.6):
-    #     leftSpeed = 5.0
-    #     rightSpeed = 5.0
-    # else:
-    #     leftSpeed = 0
-    #     rightSpeed = 0
+    leftSpeed = 3.0
+    rightSpeed = 3.0
+    
 
-    # wheels[0].setVelocity(leftSpeed)
-    # wheels[1].setVelocity(rightSpeed)
+    if lineFlag == False and findWhiteLine(groundSensor) == True:
+        lineFlag = True
+        wheels[0].setVelocity(0)
+        wheels[1].setVelocity(0)
+        passiveWait(robot,5)
+
+    wheels[0].setVelocity(leftSpeed)
+    wheels[1].setVelocity(rightSpeed)
 

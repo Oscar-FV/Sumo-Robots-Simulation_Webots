@@ -2,11 +2,92 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.5773 0.5773 0.5773 2.0944
-  position 0 0 10
-
+  orientation -0.5746256941532029 0.04626411572965176 0.817107669291326 3.010213371332728
+  position 2.7183968103755722 -0.26262086888197755 6.837238988656506
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 3 3
+}
+Solid {
+  translation 0 0 0.08
+  children [
+    DEF arena Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "asphalt.jpg"
+          ]
+        }
+        roughnessMap ImageTexture {
+          url [
+            "asphalt.jpg"
+          ]
+        }
+        metalness 0
+        textureTransform TextureTransform {
+          scale 4 4
+        }
+      }
+      geometry Cylinder {
+        height 0.2
+      }
+    }
+  ]
+  boundingObject USE arena
+}
+Solid {
+  translation -0.15 0 0.18
+  children [
+    Shape {
+      geometry Box {
+        size 0.06 0.3 0.001
+      }
+    }
+  ]
+  name "solid(1)"
+}
+Solid {
+  translation 0.15 0 0.18
+  children [
+    Shape {
+      geometry Box {
+        size 0.06 0.3 0.001
+      }
+    }
+  ]
+  name "solid(2)"
+}
+E-puck {
+  hidden position_0_0 1042.320547556041
+  hidden position_0_1 1042.3205487204546
+  hidden translation_1 0 0.025999999999999985 0.02
+  hidden rotation_1 0 -1 0 0.6882134357703631
+  hidden translation_2 0 -0.025999999999999985 0.02
+  hidden rotation_2 0 -1 0 0.6882122713568019
+  translation 0.883762 -0.00217073 0.179944
+  rotation -0.0005633495195617684 -0.0003295973091749796 0.9999997870014435 -3.127947107726294
+  controller "sumo_fight"
+  turretSlot [
+    TouchSensor {
+      translation 0.030367422601624283 1.3697298186600426e-05 -0.022866878042179906
+      rotation -0.03552427212451396 0.9993671311626243 -0.0018339143408857511 0.004737827865867612
+      boundingObject Transform {
+        translation -0.006 0 0
+        rotation 0 1 0 0
+        children [
+          Sphere {
+            radius 0.025
+          }
+        ]
+        translationStep 0.006
+      }
+      physics Physics {
+      }
+      type "force"
+    }
+  ]
 }

@@ -25,6 +25,10 @@ timestep = int(robot.getBasicTimeStep())
 groundSensor = robot.getDevice('gs0')
 groundSensor.enable(timestep)
 
+#Getting distanceSensor to react if the robot is getting close to the end of the arena
+ground_distanceSensor = robot.getDevice('gs1')
+ground_distanceSensor.enable(timestep)
+
 #Getting touchSensor, for this project i used a touchSensor of tipe "force"
 touchSensor = robot.getDevice('touch sensor')
 touchSensor.enable(timestep)
@@ -35,25 +39,25 @@ wheelsNames = ['left wheel motor', 'right wheel motor']
 for i in range(len(wheelsNames)):
     wheels.append(robot.getDevice(wheelsNames[i]))
 
-leftSpeed = 0.0
-rightSpeed = 0.0
+leftSpeed = 5.0
+rightSpeed = 5.0
 wheels[0].setPosition(INFINITY)
 wheels[1].setPosition(INFINITY)
 
 lineFlag = False
 
 while robot.step(timestep) != -1:
-
-    leftSpeed = 3.0
-    rightSpeed = 3.0
+    
+    #ground sensor to look for the whitestripe, stops for 5 seconds the the fight starts
+    # if lineFlag == False:
+    #     lineFlag = whiteLineIsFound(robot, wheels, groundSensor)
+    if ground_distanceSensor.getValue() > 500:
+        goBackwards(robot, wheels)
+        turnLeft(robot, wheels)  
     
 
-    if lineFlag == False and findWhiteLine(groundSensor) == True:
-        lineFlag = True
-        wheels[0].setVelocity(0)
-        wheels[1].setVelocity(0)
-        passiveWait(robot,5)
-
+    leftSpeed = 5.0
+    rightSpeed = 5.0  
     wheels[0].setVelocity(leftSpeed)
     wheels[1].setVelocity(rightSpeed)
 

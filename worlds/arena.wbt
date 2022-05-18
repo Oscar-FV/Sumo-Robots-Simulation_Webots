@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.5823505983713854 0.6000884165246303 0.5484174258076154 2.1128399743046593
-  position 0.0865524915439565 0.2403471010351045 5.410233426124458
+  orientation 0.32870531278040416 -0.3621768510455906 -0.872227462257774 4.672656779169311
+  position -0.5281022779922926 -1.3127204396339158 1.2449664539412606
 }
 TexturedBackground {
 }
@@ -13,39 +13,24 @@ RectangleArena {
   floorSize 3 3
 }
 Solid {
-  translation 0 0 0.08
   children [
     DEF arena Shape {
       appearance PBRAppearance {
-        baseColorMap ImageTexture {
-          url [
-            "asphalt.jpg"
-          ]
-        }
-        roughness 1
-        roughnessMap ImageTexture {
-          url [
-            "asphalt.jpg"
-          ]
-        }
+        baseColor 0.6 0.6 1
         metalness 0
-        textureTransform TextureTransform {
-          scale 4 5
-        }
       }
       geometry Cylinder {
-        height 0.2
+        height 0.1
       }
     }
   ]
   boundingObject USE arena
 }
 Solid {
-  translation -0.15 0 0.18
+  translation -0.15 0 0.05
   children [
     Shape {
       appearance PBRAppearance {
-        baseColor 0.6 0 0.6
         metalness 0
       }
       geometry Box {
@@ -56,7 +41,8 @@ Solid {
   name "solid(1)"
 }
 Solid {
-  translation 0.15 0 0.18
+  translation 0.15 0 0.05
+  rotation 0 0 1 4.692820414042842e-06
   children [
     DEF line2 Shape {
       appearance PBRAppearance {
@@ -70,17 +56,17 @@ Solid {
   name "solid(2)"
 }
 E-puck {
-  hidden position_0_0 993.0715349665459
-  hidden position_0_1 993.0715347724461
-  hidden rotation_1 0 1 0 0.32825643217120576
-  hidden rotation_2 0 1 0 0.3282562380713942
-  translation 0.8519384326537791 -0.00401821066209457 0.17986617807774585
-  rotation -0.0002181443096545251 -2.510238579383489e-05 0.9999999758914649 3.0800756132800116
+  hidden position_0_0 27.40042802976612
+  hidden position_0_1 27.400428161506326
+  hidden rotation_1 0 -0.9999999999999999 0 3.506921385059459
+  hidden rotation_2 0 -1 0 3.506919556893351
+  translation -0.243824082428734 -0.045216969661003636 0.049825836274525775
+  rotation -0.00017849199671079966 -7.068269869747909e-05 0.9999999815722814 3.11594
   controller "sumo_fight"
   turretSlot [
     TouchSensor {
-      translation 0.0304257365370455 1.4094409605204007e-05 -0.012899201139976557
-      rotation -0.035524272524804675 0.9993671311485693 -0.001833914246010416 0.004737827876550638
+      translation 0.03042617952854118 1.4079746680890903e-05 -0.012903875328916695
+      rotation -0.03552427255578268 0.9993671311486318 -0.001833913611865304 0.004737827876149845
       boundingObject Transform {
         translation 0 0 -0.006
         rotation 0 1 0 0
@@ -97,6 +83,10 @@ E-puck {
     }
   ]
   groundSensorsSlot [
+    DistanceSensor {
+      rotation 0.5773489358556708 -0.5773509358554485 -0.5773509358554485 -2.094395307179586
+      name "gs1"
+    }
     DistanceSensor {
       translation -0.0289778 0.00777252 0.00999388
       rotation -0.7040802419325705 0.09296993194586818 0.7040082419078301 2.9573

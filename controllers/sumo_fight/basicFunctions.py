@@ -20,10 +20,34 @@ def passiveWait(robot, sec):
         Step(robot)
 #---------------------------------------------------------------------------------------#
 
-def findWhiteLine(groundSensor):
+#---------------------------Basic movement Functions------------------------------------#
+def goBackwards(robot, wheels):
+    leftSpeed = -3.0
+    rightSpeed = -3.0
+    wheels[0].setVelocity(leftSpeed)
+    wheels[1].setVelocity(rightSpeed)
+    passiveWait(robot, 2)
+
+def turnLeft(robot, wheels):
+        leftSpeed = -3.0
+        rightSpeed = 3.0
+        wheels[0].setVelocity(leftSpeed)
+        wheels[1].setVelocity(rightSpeed)
+        passiveWait(robot, 3)
+#---------------------------------------------------------------------------------------#
+
+#--------------------------------Detection Functions------------------------------------#
+
+#Detects a white line, stops for 5 seconds then keeps going forward
+#The sensor that is used for this detection is a infrared sensor, when the sensor detects the colos white it returns a value around 96
+def whiteLineIsFound(robot, wheels, groundSensor):
     
     if(groundSensor.getValue() < 97):
+        wheels[0].setVelocity(0)
+        wheels[1].setVelocity(0)
+        passiveWait(robot,5)
         return True
     else:
         return False
-    
+
+    #---------------------------------------------------------------------------------------#

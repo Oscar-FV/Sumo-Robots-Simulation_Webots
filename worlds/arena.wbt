@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.32870531278040416 -0.3621768510455906 -0.872227462257774 4.672656779169311
-  position -0.5281022779922926 -1.3127204396339158 1.2449664539412606
+  orientation -0.32252622333852443 0.39027498557301704 0.8623585512389668 1.5282349632745438
+  position -0.25380339411942127 -2.419583714274291 2.0859596480059723
 }
 TexturedBackground {
 }
@@ -12,86 +12,72 @@ TexturedBackgroundLight {
 RectangleArena {
   floorSize 3 3
 }
-Solid {
+DEF arenaGroup Solid {
+  translation 0 0 0.05
   children [
-    DEF arena Shape {
-      appearance PBRAppearance {
-        baseColor 0.6 0.6 1
-        metalness 0
-      }
-      geometry Cylinder {
-        height 0.1
-      }
+    Group {
+      children [
+        DEF arena Shape {
+          appearance PBRAppearance {
+            baseColor 1 0.5 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.11
+            subdivision 100
+          }
+        }
+        Transform {
+          translation 0 0.1 0.0551
+          children [
+            DEF whitebar Shape {
+              appearance PBRAppearance {
+                baseColor 0 0 0
+                metalness 0
+              }
+              geometry Box {
+                size 0.2 0.03 1e-05
+              }
+            }
+          ]
+        }
+        Transform {
+          translation 0 -0.1 0.0551
+          children [
+            USE whitebar
+          ]
+        }
+      ]
     }
   ]
   boundingObject USE arena
 }
-Solid {
-  translation -0.15 0 0.05
-  children [
-    Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.06 0.3 0.001
-      }
-    }
-  ]
-  name "solid(1)"
-}
-Solid {
-  translation 0.15 0 0.05
-  rotation 0 0 1 4.692820414042842e-06
-  children [
-    DEF line2 Shape {
-      appearance PBRAppearance {
-        metalness 0
-      }
-      geometry Box {
-        size 0.06 0.3 0.001
-      }
-    }
-  ]
-  name "solid(2)"
-}
 E-puck {
-  hidden position_0_0 27.40042802976612
-  hidden position_0_1 27.400428161506326
-  hidden rotation_1 0 -0.9999999999999999 0 3.506921385059459
-  hidden rotation_2 0 -1 0 3.506919556893351
-  translation -0.243824082428734 -0.045216969661003636 0.049825836274525775
-  rotation -0.00017849199671079966 -7.068269869747909e-05 0.9999999815722814 3.11594
+  hidden position_0_0 31.95814353534402
+  hidden position_0_1 33.455517329958596
+  hidden linearVelocity_0 0.004025647027803774 -0.07978964094686812 -1.607153450559445e-06
+  hidden angularVelocity_0 7.657478343544384e-06 -7.59022174770836e-05 0.00012808319344957935
+  hidden rotation_1 0 -1 0 5.740968307733497
+  hidden rotation_2 0 -1 0 4.243594513118923
+  translation -0.03697466616606114 0.4675757403233397 0.10489728321821173
+  rotation -6.172835752608345e-05 5.48646519956882e-05 -0.99999999658974 1.5203629188523
   controller "sumo_fight"
-  turretSlot [
-    TouchSensor {
-      translation 0.03042617952854118 1.4079746680890903e-05 -0.012903875328916695
-      rotation -0.03552427255578268 0.9993671311486318 -0.001833913611865304 0.004737827876149845
-      boundingObject Transform {
-        translation 0 0 -0.006
-        rotation 0 1 0 0
-        children [
-          Sphere {
-            radius 0.02
-          }
-        ]
-        translationStep 0.006
-      }
-      physics Physics {
-      }
-      type "force"
-    }
-  ]
   groundSensorsSlot [
     DistanceSensor {
+      translation 2.42763e-08 -1.03647e-08 0.01
+      rotation 0.5773489358556708 -0.5773509358554485 -0.5773509358554485 -2.094395307179586
+      name "gs0"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation -1.03647e-08 -0.02 0.00999999
       rotation 0.5773489358556708 -0.5773509358554485 -0.5773509358554485 -2.094395307179586
       name "gs1"
     }
     DistanceSensor {
-      translation -0.0289778 0.00777252 0.00999388
-      rotation -0.7040802419325705 0.09296993194586818 0.7040082419078301 2.9573
-      name "gs0"
-      type "infra-red"
+      translation 1.03647e-08 0.02 0.01
+      rotation 0.5773489358556708 -0.5773509358554485 -0.5773509358554485 -2.094395307179586
+      name "gs2"
     }
   ]
 }

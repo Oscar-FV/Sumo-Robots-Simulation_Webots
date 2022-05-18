@@ -12,8 +12,6 @@ from json.encoder import INFINITY
 from fightingFunctions import *
 from basicFunctions import *
 
-
-
 # create the Robot instance.
 robot = Robot()
 
@@ -22,16 +20,15 @@ timestep = int(robot.getBasicTimeStep())
 
 #Getting groundSensor
 #The ground sensor is a infrared DistanceSensor pointing downwards
-groundSensor = robot.getDevice('gs0')
-groundSensor.enable(timestep)
+irSensor = robot.getDevice('gs0')
+irSensor.enable(timestep)
 
-#Getting distanceSensor to react if the robot is getting close to the end of the arena
-ground_distanceSensor = robot.getDevice('gs1')
-ground_distanceSensor.enable(timestep)
-
-#Getting touchSensor, for this project i used a touchSensor of tipe "force"
-touchSensor = robot.getDevice('touch sensor')
-touchSensor.enable(timestep)
+# #Getting distanceSensor to detect if the robot is getting close to the end of the arena
+distanceSensors_Names = ['gs1', 'gs2'] 
+distanceSensors = []
+for i in range(len(distanceSensors_Names)):
+    distanceSensors.append(robot.getDevice(distanceSensors_Names[i]))
+    distanceSensors[i].enable(timestep)
 
 #Getting the robot wheels
 wheels = []
@@ -39,25 +36,30 @@ wheelsNames = ['left wheel motor', 'right wheel motor']
 for i in range(len(wheelsNames)):
     wheels.append(robot.getDevice(wheelsNames[i]))
 
-leftSpeed = 5.0
-rightSpeed = 5.0
+leftSpeed = 0.0
+rightSpeed = 0.0
 wheels[0].setPosition(INFINITY)
 wheels[1].setPosition(INFINITY)
 
 lineFlag = False
 
 while robot.step(timestep) != -1:
-    
-    #ground sensor to look for the whitestripe, stops for 5 seconds the the fight starts
-    # if lineFlag == False:
-    #     lineFlag = whiteLineIsFound(robot, wheels, groundSensor)
-    if ground_distanceSensor.getValue() > 500:
-        goBackwards(robot, wheels)
-        turnLeft(robot, wheels)  
-    
 
-    leftSpeed = 5.0
-    rightSpeed = 5.0  
+    leftSpeed = 3
+    rightSpeed = 3  
     wheels[0].setVelocity(leftSpeed)
     wheels[1].setVelocity(rightSpeed)
 
+    wheels[0].setPosition(INFINITY)
+    wheels[1].setPosition(INFINITY)
+
+    
+    # ground sensor to look for the whitestripe, stops for 5 seconds the the fight starts
+    if lineFlag == False:
+        lineFlag = whiteLineIsFound(robot, wheels, irSensor)
+
+    #checking the distance sensors that are pointing downwards to detect if the arena is ending
+    cliffDetection(robot, wheels, distanceSensors)
+
+
+    

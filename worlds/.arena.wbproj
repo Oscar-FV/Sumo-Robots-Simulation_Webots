@@ -8,4 +8,4 @@ orthographicViewHeight: 1
 textFiles: -1
 globalOptionalRendering: DistanceSensorRays
 consoles: Console:All:All
-renderingDevicePerspectives: e-puck:camera;1;2.96154;0;0
+renderingDevicePerspectives: e-puck:camera;1;1;0;0

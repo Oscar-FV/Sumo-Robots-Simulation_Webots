@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.32252622333852443 0.39027498557301704 0.8623585512389668 1.5282349632745438
-  position -0.25380339411942127 -2.419583714274291 2.0859596480059723
+  orientation 0.19375075064875721 0.22946955488060078 -0.953836657927311 1.44914779248507
+  position -0.22607921284033172 1.8579857540545015 0.8242657761308078
 }
 TexturedBackground {
 }
@@ -53,15 +53,106 @@ DEF arenaGroup Solid {
   boundingObject USE arena
 }
 E-puck {
-  hidden position_0_0 31.95814353534402
-  hidden position_0_1 33.455517329958596
-  hidden linearVelocity_0 0.004025647027803774 -0.07978964094686812 -1.607153450559445e-06
-  hidden angularVelocity_0 7.657478343544384e-06 -7.59022174770836e-05 0.00012808319344957935
-  hidden rotation_1 0 -1 0 5.740968307733497
-  hidden rotation_2 0 -1 0 4.243594513118923
-  translation -0.03697466616606114 0.4675757403233397 0.10489728321821173
-  rotation -6.172835752608345e-05 5.48646519956882e-05 -0.99999999658974 1.5203629188523
+  hidden position_0_0 610.817756229183
+  hidden position_0_1 652.0797322911181
+  hidden linearVelocity_0 0.000935060701679977 0.009042408160069485 -1.0082791373240616e-07
+  hidden angularVelocity_0 4.107075946537416e-06 4.311847938012348e-05 0.0002669897555871512
+  hidden rotation_1 0 -1 0 4.934403874416442
+  hidden linearVelocity_1 0.0009269241093918805 0.009041791579770664 -1.95637611660939e-06
+  hidden angularVelocity_1 -0.452824060232853 5.982930800630359 5.136938596888789e-05
+  hidden rotation_2 0 -1 0 1.3715396555588453
+  hidden linearVelocity_2 0.0009436844235286571 0.0090428136069902 1.747888468556349e-06
+  hidden angularVelocity_2 -0.45282438296656363 5.982930781797278 5.137264676872515e-05
+  translation 0.09663550748174347 0.4030030878125526 0.1048889083521235
+  rotation -0.0005175809725966906 -0.0023166582430949726 0.999997182598292 0.07555121794671926
   controller "sumo_fight"
+  camera_width 176
+  camera_height 120
+  turretSlot [
+    Camera {
+      translation 0.0400002 -1.10113e-13 -0.02
+      rotation 0 0 1 4.6928e-06
+      name "cam"
+      recognitionColors [
+        0 1 0
+      ]
+      fieldOfView 1
+      width 176
+      height 120
+      recognition Recognition {
+        segmentation TRUE
+      }
+    }
+  ]
+  groundSensorsSlot [
+    DistanceSensor {
+      translation 2.42763e-08 -1.03647e-08 0.01
+      rotation 0.5773489358556708 -0.5773509358554485 -0.5773509358554485 -2.094395307179586
+      name "gs0"
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation -1.03647e-08 -0.02 0.00999999
+      rotation 0.5773489358556708 -0.5773509358554485 -0.5773509358554485 -2.094395307179586
+      name "gs1"
+    }
+    DistanceSensor {
+      translation 1.03647e-08 0.02 0.01
+      rotation 0.5773489358556708 -0.5773509358554485 -0.5773509358554485 -2.094395307179586
+      name "gs2"
+    }
+  ]
+}
+E-puck {
+  hidden position_0_0 415.0842959646872
+  hidden position_0_1 453.78662709396656
+  hidden linearVelocity_0 3.2015514823725437e-06 -2.676177537323344e-07 -1.0074377660392488e-07
+  hidden angularVelocity_0 5.1271564565706785e-06 -3.2545207342856976e-05 -5.755003302329733e-07
+  hidden rotation_1 0 1 0 0.39406569083450693
+  hidden linearVelocity_1 3.2747130710218656e-06 -2.601555732228951e-07 7.329251079823955e-07
+  hidden angularVelocity_1 5.006803807590806e-06 -3.2593615283063205e-05 -5.76367649284401e-07
+  hidden rotation_2 0 1 0 1.397284977036332
+  hidden linearVelocity_2 3.296608849011182e-06 -2.321499795599451e-07 -9.343881448131695e-07
+  hidden angularVelocity_2 5.5134559713500985e-06 -3.24096657144377e-05 -5.746274054317699e-07
+  translation 0.16999556830220136 0.39464174282924286 0.10489098736062126
+  rotation -4.686674810699389e-05 9.866595131972791e-05 -0.9999999940342691 1.2227703767283415
+  name "e-puck(1)"
+  controller ""
+  camera_width 176
+  camera_height 120
+  turretSlot [
+    Solid {
+      translation 0 0 -0.02
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.01 0.07 0.02
+          }
+        }
+      ]
+      recognitionColors [
+        1 0 0
+      ]
+    }
+    Camera {
+      translation 0.0400002 -1.10113e-13 -0.02
+      rotation 0 0 1 4.6928e-06
+      name "cam"
+      recognitionColors [
+        0 0 0
+      ]
+      fieldOfView 1
+      width 176
+      height 120
+      recognition Recognition {
+        segmentation TRUE
+      }
+    }
+  ]
   groundSensorsSlot [
     DistanceSensor {
       translation 2.42763e-08 -1.03647e-08 0.01

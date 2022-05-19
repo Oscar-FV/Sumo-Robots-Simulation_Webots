@@ -21,12 +21,10 @@ def passiveWait(robot, sec):
 #---------------------------------------------------------------------------------------#
 
 #---------------------------Basic movement Functions------------------------------------#
-def goBackwards(robot, wheels):
-    leftSpeed = -3.0
-    rightSpeed = -3.0
-    wheels[0].setVelocity(leftSpeed)
-    wheels[1].setVelocity(rightSpeed)
-    passiveWait(robot, 2)
+def goBackwards(robot, wheels, sec):
+    wheels[0].setVelocity(-3.0)
+    wheels[1].setVelocity(-3.0)
+    passiveWait(robot, sec)
 
 def turnLeft(robot, wheels):
         wheels[0].setVelocity(-3.0)
@@ -55,10 +53,10 @@ def whiteLineIsFound(robot, wheels, irSensor):
 
 #Detects if the area of the arena is ending, if one of the two sensors detects the end of the arena, the robot goes backwards, and then
 #depending of the sensor that detects the cliff (left or right) turn in the opposite direction
-def cliffDetection(robot, wheels, distanceSensors):
+def cliffDetection(robot, wheels, distanceSensors, sec):
     for i in range(len(distanceSensors)):
         if distanceSensors[i].getValue() > 200:
-            goBackwards(robot, wheels)
+            goBackwards(robot, wheels, sec)
             if(i == 0):
                 turnLeft(robot, wheels)
             else:

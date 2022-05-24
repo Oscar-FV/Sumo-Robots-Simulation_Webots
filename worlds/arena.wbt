@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.5595763683774393 0.5217159084648673 0.6439617991839225 2.060182492649794
-  position 0.392894859369277 -0.9146608837598047 5.7667166182572736
+  orientation 0.23227134077126288 -0.09062308124399077 -0.9684200955175213 3.864095456172021
+  position 1.0109571803123585 -0.035462021930925916 0.8655818264991236
 }
 TexturedBackground {
 }
@@ -53,19 +53,55 @@ DEF arenaGroup Solid {
   boundingObject USE arena
 }
 E-puck {
-  hidden position_0_0 681.7826288305258
-  hidden position_0_1 745.8834909033746
-  hidden rotation_1 0 1 0 3.1986156551304834
-  hidden rotation_2 0 1 0 4.467624656183446
-  translation 0.0137387 -0.857723 0.104926
-  rotation 0 0 1 1.6
+  hidden position_0_0 1.3529599906956105
+  hidden position_0_1 1.3529599900951792
+  hidden linearVelocity_0 0.0032740390612468573 0.07981720273309222 1.3539469321746839e-05
+  hidden angularVelocity_0 -0.0002052960242378513 0.001171288963127617 -2.540617394352897e-05
+  hidden rotation_1 0 -1 0 1.9322090967142003
+  hidden rotation_2 0 -1 0 5.712589390896054
+  translation -0.02702775096167664 -0.8337247419360613 0.1048889660229164
+  rotation 3.0613553693036244e-05 -3.946799928745898e-06 0.9999999995236165 1.5300002078342008
   controller "sumo_fight"
   camera_width 176
   camera_height 120
   turretSlot [
+    Solid {
+      translation 0.02 0 0.01
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            metalness 0
+          }
+          geometry Box {
+            size 0.04 0.06 0.04
+          }
+        }
+      ]
+      recognitionColors [
+        1 0 0
+      ]
+    }
     TouchSensor {
-      translation 0.03 0 -0.02
+      translation 0.027 0.008 -0.02
       rotation 0 1 0 0
+      name "ts1"
+      boundingObject Sphere {
+        radius 0.02
+      }
+    }
+    TouchSensor {
+      translation 0.027 -0.008 -0.02
+      rotation 0 1 0 0
+      name "ts2"
+      boundingObject Sphere {
+        radius 0.02
+      }
+    }
+    TouchSensor {
+      translation 0.027 0 -0.02
+      rotation 0 1 0 0
+      name "ts0"
       boundingObject Sphere {
         radius 0.02
       }
@@ -105,19 +141,19 @@ E-puck {
   ]
 }
 E-puck {
-  hidden position_0_0 415.08429592300166
-  hidden position_0_1 453.7866271391396
-  hidden rotation_1 0 1 0 0.3940656491489545
-  hidden rotation_2 0 1 0 1.397285022209399
-  translation 0.00570236 0.252722 0.105338
-  rotation 0.003047680457629981 -0.000641333096300533 0.9999951501560835 1.72096
+  hidden position_0_0 1.3433477352646084
+  hidden position_0_1 1.3433477061900143
+  hidden rotation_1 0 -1 0 5.333442254476484
+  hidden rotation_2 0 -1 0 1.5630075751904455
+  translation -0.02644428354676153 0.8475185244435233 0.10474786720793769
+  rotation 0 0 1 -1.53
   name "e-puck(1)"
-  controller ""
+  controller "sumo_fight"
   camera_width 176
   camera_height 120
   turretSlot [
     Solid {
-      translation 0 0 -0.02
+      translation 0.02 0 0.01
       children [
         Shape {
           appearance PBRAppearance {
@@ -125,7 +161,7 @@ E-puck {
             metalness 0
           }
           geometry Box {
-            size 0.01 0.07 0.02
+            size 0.04 0.06 0.04
           }
         }
       ]
@@ -133,12 +169,36 @@ E-puck {
         1 0 0
       ]
     }
+    TouchSensor {
+      translation 0.027 0 -0.02
+      rotation 0 1 0 0
+      name "ts0"
+      boundingObject Sphere {
+        radius 0.02
+      }
+    }
+    TouchSensor {
+      translation 0.027 0.008 -0.02
+      rotation 0 1 0 0
+      name "ts1"
+      boundingObject Sphere {
+        radius 0.02
+      }
+    }
+    TouchSensor {
+      translation 0.027 -0.008 -0.02
+      rotation 0 1 0 0
+      name "ts2"
+      boundingObject Sphere {
+        radius 0.02
+      }
+    }
     Camera {
       translation 0.0400002 -1.10113e-13 -0.02
       rotation 0 0 1 4.6928e-06
       name "cam"
       recognitionColors [
-        0 0 0
+        0 1 0
       ]
       fieldOfView 1
       width 176

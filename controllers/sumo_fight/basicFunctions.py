@@ -29,12 +29,12 @@ def goBackwards(robot, wheels, sec):
 def turnLeft(robot, wheels):
         wheels[0].setVelocity(-3.0)
         wheels[1].setVelocity(3)
-        passiveWait(robot, 1)
+        passiveWait(robot, 0.3)
 
 def turnRight(robot, wheels):
         wheels[0].setVelocity(3.0)
         wheels[1].setVelocity(-3.0)
-        passiveWait(robot, 1)
+        passiveWait(robot, 0.3)
 #---------------------------------------------------------------------------------------#
 
 #--------------------------------Detection Functions------------------------------------#

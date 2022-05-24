@@ -31,8 +31,11 @@ for i in range(len(distanceSensors_Names)):
     distanceSensors[i].enable(timestep)
 
 #Getting the touchSensor this sensor is the type "bumper", if the robot is touching something it returns a 1
-touchSensor = robot.getDevice('touch sensor')
-touchSensor.enable(timestep)
+touchSensor_Names = ['ts0', 'ts1', 'ts2']
+touchSensors = []
+for i in range(len(touchSensor_Names)):
+    touchSensors.append(robot.getDevice(touchSensor_Names[i]))
+    touchSensors[i].enable(timestep)
 
 # Getting the robot camera
 camera = robot.getDevice('cam')
@@ -62,7 +65,7 @@ enemyBump = False
 #velocity 6 is a hardpunch
 speedsArray = [2,2,2,3,3,3,3,4,4,5,5,6]
 speedsArray2 = [2,3,3,4,4,4,5,5,5,5,6,6]
-speedsArray3 = [2,2,2,3,3,3,3,6,6,6,6,6]
+speedsArray3 = [3,3,3,4,4,4,4,6,6,6,6,6]
 speed = 4.0
 
 while robot.step(timestep) != -1:
@@ -77,7 +80,7 @@ while robot.step(timestep) != -1:
 
         if enemyBump == True:
             if speed == 2 or speed == 3:
-                goBackwards(robot, wheels, 1)
+                goBackwards(robot, wheels, 0.3)
                 speed = random.choice(speedsArray)
             else:
                 if speed == 4 or speed == 5:
@@ -87,10 +90,17 @@ while robot.step(timestep) != -1:
                     speed = random.choice(speedsArray3)
                     enemyBump == True
         
-        if touchSensor.getValue() == 1:
-            enemyBump = True
-        else:
-            enemyBump = False
+        for i in range(len(touchSensors)):
+            if touchSensors[i].getValue() == 1:
+                enemyBump = True
+                if i == 1:
+                    turnLeft(robot,wheels)
+                else:
+                    if i == 2:
+                        turnRight(robot, wheels)
+                break
+            else:
+                enemyBump = False
 
         #checking the distance sensors that are pointing downwards to detect if the arena is ending
         cliffDetection(robot, wheels, distanceSensors, 2)
@@ -102,13 +112,13 @@ while robot.step(timestep) != -1:
             if objectPosition[0] > cameraMiddle[0]:
                 wheels[0].setVelocity(speed)
                 wheels[1].setVelocity(-speed)
-                if objectPosition[0] <= cameraMiddle[0] + 10:
+                if objectPosition[0] <= cameraMiddle[0] + 15:
                     wheels[0].setVelocity(speed)
                     wheels[1].setVelocity(speed)
             else:
                 wheels[0].setVelocity(-speed)
                 wheels[1].setVelocity(speed)
-                if objectPosition[0] >= cameraMiddle[0] - 10:
+                if objectPosition[0] >= cameraMiddle[0] - 15:
                     wheels[0].setVelocity(speed)
                     wheels[1].setVelocity(speed)
         else:

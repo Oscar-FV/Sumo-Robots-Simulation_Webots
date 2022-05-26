@@ -63,7 +63,7 @@ enemyBump = False
 #velocity 2-3 is a softpunch
 #velocity 4-5 is a mediumpunch
 #velocity 6 is a hardpunch
-speedsArray = [2,2,2,3,3,3,3,4,4,5,5,6]
+speedsArray =  [2,2,2,3,3,3,3,4,4,5,5,6]
 speedsArray2 = [2,3,3,4,4,4,5,5,5,5,6,6]
 speedsArray3 = [3,3,3,4,4,4,4,6,6,6,6,6]
 speed = 4.0
@@ -80,7 +80,7 @@ while robot.step(timestep) != -1:
 
         if enemyBump == True:
             if speed == 2 or speed == 3:
-                goBackwards(robot, wheels, 0.3)
+                goBackwards(robot, wheels, 0.5)
                 speed = random.choice(speedsArray)
             else:
                 if speed == 4 or speed == 5:
